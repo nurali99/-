@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title%}Bosh sahifa{% endblock title%}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong> {{user.username | title }}!</strong> -> Saytga xush kelibsiz
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<p><a href="{% url 'logout' %}"><button type="button" class="btn btn-danger">Chiqish</button></a></p>
+{% else %}
+
+<div class="alert alert-danger" role="alert">
+  <p>Saytga kirmagasiz</p>
+</div>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Saytga kirmagasiz!</strong> -> Siz saytga kirishingiz kere login yoki registratsiya dan o'tishingiz kere
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<a href="{% url 'login' %}"><button type="button" class="btn btn-danger">Chiqish</button></a>
+<a href="{% url 'signup' %}"><button type="button" class="btn btn-success">Ro'yhatdan o'tish</button></a>
+<a href="{% url 'password_change' %}" type="submit"> o'zgartirish</a>
+{% endif %}
+{% endblock content %}
